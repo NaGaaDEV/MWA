@@ -1,0 +1,19 @@
+{
+  "name": "lab02-http",
+  "version": "1.0.0",
+  "description": "Node web application on port 4444 using http module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "module"
+  ],
+  "author": "Nega",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
