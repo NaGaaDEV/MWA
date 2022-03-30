@@ -5,7 +5,7 @@ require("dotenv").config();
 const serve = function(req, res) {
     if(req.method == "POST") {
         res.writeHead(200, {"Content-Type": "application/json"});
-        res.end(JSON.stringify({message : 'JSON'}));
+        res.end('{"message":"JSON"}');
     } else if(req.url == "/page1.html") {
         fs.readFile("./page1.html", function(err, data) {
             let statusCode;
