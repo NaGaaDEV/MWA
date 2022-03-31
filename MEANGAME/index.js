@@ -1,9 +1,12 @@
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
+const routes = require("./router");
 
 const app = express();
 app.set("port", process.env.PORT);
+
+app.use("/api", routes);
 
 app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR)));
 
