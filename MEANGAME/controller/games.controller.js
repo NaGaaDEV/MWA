@@ -37,15 +37,15 @@ module.exports.getOne = function(req, res) {
 }
 
 module.exports.addOne = function(req, res) {
-    if(req.body && req.body.title && req.body.price && req.body.minPlayers && req.body.minAge) {
+    if(req.body && req.body.title != undefined && req.body.price != undefined && req.body.minPlayers != undefined && req.body.maxPlayers != undefined && req.body.minAge != undefined) {
         let statusCode;
         let message = "";
-        if((1>req.body.minPlayers || req.body.minPlayers > 11) && (1>req.body.maxPlayers || req.body.maxPlayers > 11)) {
-            message = "The minimum number of players are between 1 and 11.";
+        if((req.body.minPlayers < 1 || req.body.minPlayers > 11) || (req.body.maxPlayers < 1 || req.body.maxPlayers > 11)) {
+            message = "The minimum number of players are between 1 and 11, ";
             statusCode = 400;
         } 
-        if(req.body.minAge) {
-            message = "The age range can only be between 6-99";
+        if(req.body.minAge < 6 || req.body.minAge > 99) {
+            message += "The age range can only be between 6-99";
             statusCode = 400;
         }
         if(statusCode == undefined) {
@@ -57,22 +57,19 @@ module.exports.addOne = function(req, res) {
                 minAge: req.body.minAge
             };
             gameCollection().insertOne(newGame, function(err, response) {
-                if(err) {
-                    statusCode = 500;
-                    message = response; 
-                } else {
-                    statusCode = 201;
-                    message = response;
-                }
+                statusCode = err ? 500 : 201;
+                res.status(statusCode).send(response);
             })
+        } else {
+            res.status(statusCode).send(message);
         }
-        req.status(statusCode).send(message);
     } else {
-        req.status(400).send("Bad request");
+        res.status(400).send("Bad request");
     }
 }
 
 module.exports.deleteOne = function(req, res) {
+    const gameId = req.params.gameId;
     if(gameId) {
         gameCollection().deleteOne({_id: ObjectId(gameId)}, function(err, docs) {
             if(err) {
