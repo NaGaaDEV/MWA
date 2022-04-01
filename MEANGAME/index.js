@@ -5,6 +5,8 @@ const path = require("path");
 const routes = require("./router");
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.set("port", process.env.PORT);
 
 app.use("/api", routes);
