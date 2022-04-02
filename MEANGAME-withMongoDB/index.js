@@ -1,10 +1,8 @@
 require("dotenv").config();
-require("./api/data/dbconnection").open();
-require("./api/data/db");
-
+require("./data/dbconnection").open();
 const express = require("express");
 const path = require("path");
-const routes = require("./api/router");
+const routes = require("./router");
 
 const app = express();
 app.use(express.json());
