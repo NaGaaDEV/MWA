@@ -5,25 +5,18 @@ const publisherSchema= new mongoose.Schema({
         type: String,
         required: true
     },
-    country: String,
-    established: Number
+    country: String
 });
 const reviewSchema= new mongoose.Schema({ 
-    title: {
+    name: {
         type: String,
         required: true 
-    },
-    rating: {
-        type: Number,
-        min: 1,
-        max: 5,
-        required: true
     },
     review: {
         type: String,
         required: true
     },
-    postDate: {
+    date: {
         type: Date,
         default: Date.Now
     }

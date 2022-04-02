@@ -1,6 +1,5 @@
 const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
-const dbconnection = require("../data/dbconnection");
 
 const gameCollection = () => dbconnection.get().collection("games");
 const games = mongoose.model(process.env.GAME_MODEL);
@@ -37,6 +36,8 @@ module.exports.getOne = function(req, res) {
 }
 
 module.exports.addOne = function(req, res) {
+    //TODO
+    /*
     if(req.body && req.body.title != undefined && req.body.price != undefined && req.body.minPlayers != undefined && req.body.maxPlayers != undefined && req.body.minAge != undefined) {
         let statusCode;
         let message = "";
@@ -66,6 +67,7 @@ module.exports.addOne = function(req, res) {
     } else {
         res.status(400).send("Bad request");
     }
+    */
 }
 
 module.exports.deleteOne = function(req, res) {

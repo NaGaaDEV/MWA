@@ -28,7 +28,7 @@ module.exports.getOne = function(req, res) {
             }
         });
     } else {
-        res.status(400).json({error: process.env.MSG_STUDENT_ID_REQUIRED + " & " + process.env.MSG_COURSE_ID_REQUIRED})
+        res.status(400).json({error: process.env.MSG_STUDENT_ID_REQUIRED + " & " + process.env.MSG_COURSE_ID_REQUIRED});
     }
 }
 
