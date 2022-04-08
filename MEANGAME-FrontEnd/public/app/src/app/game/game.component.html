@@ -1,0 +1,10 @@
+<ng-container *ngIf="item">
+<h1>{{item.title}} - {{item.rate}}</h1>
+Price: {{item.price}} <br>
+Year: {{item.year}} <br>
+Players: {{item.minPlayers}} - {{item.maxPlayers}} <br>
+Minimum Age: {{item.minAge}} <br>
+<br>
+<span (click)="onDelete(item._id)">❌</span>
+
+</ng-container>

@@ -1,0 +1,24 @@
+<ul>
+    <li *ngFor="let item of list">
+        <a [routerLink]="item._id">{{item.title}}</a><span (click)="onDelete(item._id)">❌</span>
+    </li>
+</ul>
+<hr>
+
+<form [formGroup]="newGameFormGroup" (ngSubmit)="onAddGame()">
+    Title: <input formControlName="title" type="text" placeholder="Title"> <br>
+    Rating: <select formControlName="rate" >
+        <option value="1">&#9733;</option>
+        <option value="2">&#9733;&#9733;</option>
+        <option value="3">&#9733;&#9733;&#9733;</option>
+        <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+        <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+    </select> <br>
+    Price: <input formControlName="price" type="text" placeholder="Price"> <br>
+    Year: <input formControlName="year" type="text" placeholder="Year"> <br>
+    Minimum Players: <input formControlName="minPlayers" type="text" placeholder="Minimum Players"> <br>
+    Maximum Players: <input formControlName="maxPlayers" type="text" placeholder="Maximum Players"> <br>
+    Minimum Age: <input formControlName="minAge" type="text" placeholder="Minimum Age"> <br>
+    <button type="submit">Add Game</button> &nbsp;&nbsp;
+    <ng-container *ngIf="saveGameMessage">{{saveGameMessage}}</ng-container>
+</form>

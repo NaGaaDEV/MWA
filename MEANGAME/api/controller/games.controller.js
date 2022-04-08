@@ -1,13 +1,32 @@
 const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
-const gameCollection = () => dbconnection.get().collection("games");
 const games = mongoose.model(process.env.GAME_MODEL);
 
+_runGeoQuery = function(req, res, limit) {
+    const offset = 0;
+    const lng = parseFloat(req.query.lat);
+    const lat = parseFloat(req.query.lan);
+    const point = {type: "Point", coordinates: [lng, lat]};
+    const query="";
+    games.find(query).skip(offset).limit(limit).exec(function(err, docs) {
+        if(err) {
+            res.send(500).json({message: err})
+        } else {
+            res.status(200).json(docs);
+        }
+    });
+}
+
+
 module.exports.getAll = function(req, res) {
-    let limit = 3;
-    if(req.query && req.query.limit) {
-        limit = parseInt(req.query.limit) < 10 ? parseInt(req.query.limit) : 10;
+    let limit = 5;
+    if(req.query && req.query.count) {
+        limit = parseInt(req.query.count) < 10 ? parseInt(req.query.count) : 10;
+    }
+    if(req.query && req.query.lat && req.query.lan) {
+        _runGeoQuery(req, res, limit);
+        return;
     }
     
     games.find().limit(limit).exec(function(err, docs) {
@@ -36,7 +55,18 @@ module.exports.getOne = function(req, res) {
 }
 
 module.exports.addOne = function(req, res) {
-    //TODO
+    if(req.body && req.body.title) {
+        const respond = function(err, result) {
+            if(err) {
+                res.status(500).json({message: err})
+            } else {
+                res.status(201).json(result);
+            }
+        }
+        games.create(req.body, (err, result) => respond(err, result))
+    } else {
+        res.status(400).json({message: "Game title is required"})
+    }
     /*
     if(req.body && req.body.title != undefined && req.body.price != undefined && req.body.minPlayers != undefined && req.body.maxPlayers != undefined && req.body.minAge != undefined) {
         let statusCode;
@@ -73,11 +103,11 @@ module.exports.addOne = function(req, res) {
 module.exports.deleteOne = function(req, res) {
     const gameId = req.params.gameId;
     if(gameId) {
-        gameCollection().deleteOne({_id: ObjectId(gameId)}, function(err, docs) {
+        games.findOneAndDelete(gameId).exec(function(err, docs) {
             if(err) {
-                res.status(500).send("Database error");
+                res.status(500).send(err);
             } else {
-                res.status(200).json(docs)
+                res.status(204).json(docs)
             }
         })
     } else {

@@ -5,7 +5,11 @@ const publisherSchema= new mongoose.Schema({
         type: String,
         required: true
     },
-    country: String
+    country: String,
+    location: {
+        type: [Number], //longitude (e to w), latitude (n to s) [from internet all is lat, long, mongo is reversed]
+        index: "2dsphere"
+    }
 });
 const reviewSchema= new mongoose.Schema({ 
     name: {
