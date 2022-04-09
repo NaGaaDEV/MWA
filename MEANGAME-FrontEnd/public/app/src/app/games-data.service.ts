@@ -25,6 +25,10 @@ export class GamesDataService {
   deleteGame(id:string):Observable<any> {
     return this.httpClient.delete(this.#_apiBaseUrl+"games/"+id);
   }
+
+  geoSearchGame(term:{lng:string, lat:string}):Observable<Game[]> {
+    return this.httpClient.get<Game[]>(this.#_apiBaseUrl+"games/search?lng="+term.lng+"&&lat="+term.lat)
+  }
 }
 
 export class Game {

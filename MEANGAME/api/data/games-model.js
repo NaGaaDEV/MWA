@@ -7,8 +7,10 @@ const publisherSchema= new mongoose.Schema({
     },
     country: String,
     location: {
-        type: [Number], //longitude (e to w), latitude (n to s) [from internet all is lat, long, mongo is reversed]
-        index: "2dsphere"
+        coordinates: {
+            type: [Number], //longitude (e to w), latitude (n to s) [from internet all is lat, long, mongo is reversed]
+            index: "2dsphere"
+        }
     }
 });
 const reviewSchema= new mongoose.Schema({ 

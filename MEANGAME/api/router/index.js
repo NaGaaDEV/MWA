@@ -5,6 +5,9 @@ const reviewsController = require("../controller/reviews.controller");
 
 const router = express.Router();
 
+router.route("/games/search")
+    .get(gamesController.searchByGeo)
+    
 router.route("/games")
     .get(gamesController.getAll)
     .post(gamesController.addOne);
@@ -12,6 +15,7 @@ router.route("/games")
 router.route("/games/:gameId")
     .get(gamesController.getOne)
     .delete(gamesController.deleteOne);
+
 
 router.route("/games/:gameId/publisher")
     .get(publisherController.getAll)

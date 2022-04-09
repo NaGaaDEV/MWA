@@ -114,3 +114,36 @@ module.exports.deleteOne = function(req, res) {
         res.status(400).send("Bad request");
     }
 }
+
+module.exports.searchByGeo = function (req, res) {
+    console.log(req.query);
+  const lng = parseFloat(req.query.lng);
+  const lat = parseFloat(req.query.lat); //Geo JSON Point
+  const point = { type: "Point", coordinates: { lng, lat } };
+  console.log(point);
+  games.aggregate(
+    [
+      {
+        $geoNear: {
+          near: point,
+          spherical: true,
+          distanceField: "distance",
+          maxDistance: parseFloat(process.env.GEO_SEARCH_MAX_DIST, 10),
+          minDistance: parseFloat(process.env.GEO_SEARCH_MIN_DIST, 10),
+        },
+      },
+      {
+        $limit: parseFloat(5, 10),
+      },
+    ],
+    function (err, games) {
+      if (err) {
+        console.log("Geo error ", err);
+        res.status(500).json(err);
+      } else {
+        console.log("Geo results", games);
+        res.status(200).json(games);
+      }
+    }
+  );
+};

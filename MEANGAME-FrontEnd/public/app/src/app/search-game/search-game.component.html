@@ -1,0 +1,13 @@
+<form #searchFormGroup="ngForm" (ngSubmit)="onGeoSearch()">
+    <input name="lng" type="text" placeholder="Longitude" ngModel>
+    <input name="lat" type="text" placeholder="Latitude" ngModel>
+    <button type="submit">Search</button>
+</form>
+<ng-container *ngIf="games">
+    <ul>
+        <li *ngFor="let item of games">
+            <a [routerLink]="item._id">{{item.title}}</a>
+        </li>
+    </ul>
+</ng-container>
+<hr>
