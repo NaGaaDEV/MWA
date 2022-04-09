@@ -116,11 +116,9 @@ module.exports.deleteOne = function(req, res) {
 }
 
 module.exports.searchByGeo = function (req, res) {
-    console.log(req.query);
   const lng = parseFloat(req.query.lng);
   const lat = parseFloat(req.query.lat); //Geo JSON Point
   const point = { type: "Point", coordinates: { lng, lat } };
-  console.log(point);
   games.aggregate(
     [
       {
