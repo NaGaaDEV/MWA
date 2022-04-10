@@ -1,0 +1,6 @@
+<!-- <form #templateForm="ngForm" (ngSubmit)="loginWithViewChild()"> -->
+<form #templateForm="ngForm" (ngSubmit)="login(templateForm)">
+    <input name="username" ngModel/>
+    <input name="password" ngModel/>
+    <button type="submit">Login</button>
+</form>
