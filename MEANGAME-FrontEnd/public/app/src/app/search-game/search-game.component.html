@@ -1,6 +1,11 @@
-<form #searchFormGroup="ngForm" (ngSubmit)="onGeoSearch()">
+<!-- <form #searchFormGroup="ngForm" (ngSubmit)="onGeoSearch()">
     <input name="lng" type="text" placeholder="Longitude" ngModel>
     <input name="lat" type="text" placeholder="Latitude" ngModel>
+    <button type="submit">Search</button>
+</form> -->
+<form [formGroup]="searchFormGroup"  (ngSubmit)="onGeoSearch()">
+    <input formControlName="lng" type="text" placeholder="Longitude" ngModel>
+    <input formControlName="lat" type="text" placeholder="Latitude" ngModel>
     <button type="submit">Search</button>
 </form>
 <ng-container *ngIf="games">

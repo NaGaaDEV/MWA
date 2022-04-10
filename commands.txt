@@ -1,0 +1,41 @@
+Comands
+Port user -> lsof -i tcp:3000 (3000 is port number)
+Kill process -> kill -3 16231 (-3 quit, -9 immediately, -15 terminate | 16231 is process id)
+
+JSON
+mongoimport --db 3Dapps --collection apps --jsonArray 3Dapps.json
+mongoexport --db 3Dapps –-collection apps –out output/3Dapps.json --jsonArray --pretty
+mongoexport --db 3Dapps --collection apps 
+BSON
+mongodump --db 3Dapps --gzip 
+mongorestore --nsInclude=3Dapps.apps -- gzip dump/ mongorestore --gzip dump/
+
+Also check for gzip
+
+brew services start mongodb-community@5.0
+
+db.students.update({}, {$push : {courses: {"_id" : new ObjectId(), name: "MWA", description: "Fullstack web development"}}})
+——
+
+npm i --g @angular/cli
+ng new firstapp --skip-git=true --skip-tests=true --directory public --defaults=true
+ng serve
+npm i --g typescript
+tsc test.ts
+node test.js
+tsconfig.json { "compilerOptions" : { "target": "ES2015", "outDir": "output" } }
+
+——
+
+db.games.createIndex({publisher.location.coordinates":"2dsphere"})
+Db.games.getIndexes()
+
+
+startBack: “npm start”
+startFront: “cd ./public/angular-app && npm start”
+startBoth: “npm run startFront && npm run startBack”
+->install Npm install npm-run-all 
+And replace startBoth with 
+startBoth: “npm-run-all —parallel startBack startFront”
+
+>npm run startBoth

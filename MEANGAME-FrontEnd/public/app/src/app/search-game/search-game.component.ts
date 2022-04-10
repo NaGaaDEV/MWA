@@ -8,18 +8,20 @@ import { Game, GamesDataService } from '../games-data.service';
   styleUrls: ['./search-game.component.css']
 })
 export class SearchGameComponent implements OnInit {
-  @ViewChild('searchFormGroup')
-  searchFormGroup!: NgForm;
+  // @ViewChild('searchFormGroup')
+  // searchFormGroup!: NgForm;
+
+  searchFormGroup!: FormGroup;
 
   games!:Game[];
 
   constructor(private formBuilder:FormBuilder, private gameDataService:GamesDataService) { }
 
   ngOnInit(): void {
-    // this.searchFormGroup = new FormGroup({
-    //   lng: new FormControl(),
-    //   lat: new FormControl()
-    // })
+    this.searchFormGroup = new FormGroup({
+      lng: new FormControl(''),
+      lat: new FormControl('')
+    })
 
     // this.searchFormGroup = this.formBuilder.group({
     //   "search": this.formBuilder.control('')
