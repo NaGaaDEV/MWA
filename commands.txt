@@ -8,7 +8,8 @@ mongoexport --db 3Dapps –-collection apps –out output/3Dapps.json --jsonArra
 mongoexport --db 3Dapps --collection apps 
 BSON
 mongodump --db 3Dapps --gzip 
-mongorestore --nsInclude=3Dapps.apps -- gzip dump/ mongorestore --gzip dump/
+mongorestore --nsInclude=3Dapps.apps -- gzip dump/
+mongorestore --gzip dump/
 
 Also check for gzip
 
