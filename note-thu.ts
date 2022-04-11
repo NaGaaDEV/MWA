@@ -1,15 +1,9 @@
-assignment on meangame
--delete
--add
-
-tryout geoSearch
-
-child component 
+//child component 
 @Output()
 addEvent:EventEmitter<number>=new EventEmitter<number>();
 this.addEvent.emit(z)
 
-on parent component
+//on parent component
 <app-child (addEvent)="setZ($event)"></app-child>
 setZ(mes:number):void {
     this.z=msg;
