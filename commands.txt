@@ -4,7 +4,7 @@ Kill process -> kill -3 16231 (-3 quit, -9 immediately, -15 terminate | 16231 is
 
 JSON
 mongoimport --db 3Dapps --collection apps --jsonArray 3Dapps.json
-mongoexport --db 3Dapps –-collection apps –out output/3Dapps.json --jsonArray --pretty
+mongoexport --db 3Dapps --collection apps --out output/3Dapps.json --jsonArray --pretty
 mongoexport --db 3Dapps --collection apps 
 BSON
 mongodump --db 3Dapps --gzip 
