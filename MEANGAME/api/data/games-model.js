@@ -55,5 +55,17 @@ const gamesSchema = mongoose.Schema({
     publisher: publisherSchema,
     reviews: [reviewSchema]
 });
+const usersSchema = mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    name: String,
+    password: {
+        type: String,
+        required: true
+    },
+});
 
 mongoose.model(process.env.GAME_MODEL, gamesSchema, process.env.GAME_COLLECTION);
+mongoose.model(process.env.USER_MODEL, usersSchema, process.env.USER_COLLECTION);

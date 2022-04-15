@@ -1,0 +1,7 @@
+<form #registrationForm="ngForm" (ngSubmit)="onRegister()">
+        <input name="name" placeholder="Name" type="text" ngModel/>
+        <input name="username" placeholder="Username" type="text" ngModel/>
+        <input name="password" placeholder="Password" type="password" ngModel/>
+        <input name="repeat-password" placeholder="Repeat Password" type="password" ngModel/>
+        <button type="submit">Register</button>
+    </form>

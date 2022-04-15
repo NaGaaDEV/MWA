@@ -12,6 +12,7 @@ import { GameComponent } from './game/game.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchGameComponent } from './search-game/search-game.component';
 import { LoginComponent } from './login/login.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     GameComponent,
     SearchGameComponent,
-    LoginComponent
+    LoginComponent,
+    UserRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot([
       {path: "", component: HomeComponent},
       {path: "games", component: GamesComponent},
-      {path: "games/:gameId", component: GameComponent}
+      {path: "games/:gameId", component: GameComponent},
+      {path: "register", component: UserRegistrationComponent},
     ])
   ],
   providers: [],

@@ -1,9 +1,13 @@
 const express = require("express");
+const usersController = require("../controller/users.controller");
 const gamesController = require("../controller/games.controller");
 const publisherController = require("../controller/publisher.controller");
 const reviewsController = require("../controller/reviews.controller");
 
 const router = express.Router();
+
+router.route("/users")
+    .post(usersController.addOne);
 
 router.route("/games/search")
     .get(gamesController.searchByGeo)
