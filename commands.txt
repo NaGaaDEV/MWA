@@ -5,7 +5,7 @@ Kill process -> kill -3 16231 (-3 quit, -9 immediately, -15 terminate | 16231 is
 JSON
 mongoimport --db 3Dapps --collection apps --jsonArray 3Dapps.json
 mongoexport --db 3Dapps --collection apps --out output/3Dapps.json --jsonArray --pretty
-mongoexport --db 3Dapps --collection apps 
+mongoexport --db 3Dapps --collection apps
 BSON
 mongodump --db 3Dapps --gzip 
 mongorestore --nsInclude=3Dapps.apps -- gzip dump/
@@ -37,6 +37,6 @@ startFront: “cd ./public/angular-app && npm start”
 startBoth: “npm run startFront && npm run startBack”
 ->install Npm install npm-run-all 
 And replace startBoth with 
-startBoth: “npm-run-all —parallel startBack startFront”
+startBoth: “npm-run-all --parallel startBack startFront”
 
 >npm run startBoth
